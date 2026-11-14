@@ -1,0 +1,30 @@
+{
+    "manifest_version": 3,
+    "version": "0.0.1",
+    "name": "Automatic Sonification",
+    "short_name": "ASSL",
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "permissions": [
+                "active<tab"
+            ],
+            "js": [
+                "./content/metadata-doi.js",
+                "./content/detect-doi.js"
+            ]
+        }
+    ],
+    "browser_specific_settings": {
+        "gecko": {
+            "data_collection_permissions": {
+                "required": [
+                    "none"
+                ]
+            },
+            "id": "assl@example.com"
+        }
+    }
+}
