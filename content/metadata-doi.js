@@ -11,14 +11,9 @@ const metaSelectors = [
 ];
 
 function detectDOIFromMeta() {
-    console.log("DOI metadata detector is running");
-
     for (const selector of metaSelectors) {
-        console.log("Testing selector:", selector);
-
         const element = document.querySelector(selector);
         if (element) {
-            console.log("MATCH:", element);
 
             const content = element.getAttribute("content");
 
@@ -27,6 +22,5 @@ function detectDOIFromMeta() {
             }
         }
     }
-    console.log("No DOI metadata found.");
     return null;
 }
