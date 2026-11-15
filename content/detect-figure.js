@@ -1,5 +1,4 @@
 async function detectFigures() {
-    console.log("ASSL: detectFigures called");
     
     const selectors = [
         "figure",
@@ -20,10 +19,16 @@ async function detectFigures() {
         }
     }
 
-    console.log("Figure encoding:", figureEncoding);
-    console.log("Figures found:", figures.length);
-
     for (const figure of figures) {
+        // exclude such "figures" that are only in navigation or other sections of the document
+        if (
+            figure.closest("nav") ||
+            figure.closest("header") ||
+            figure.closest("footer")
+        ) {
+            continue;
+        }
+
         figure.style.border = "5px solid red";
 
         const sonifyButton = document.createElement("button");
