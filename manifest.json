@@ -12,6 +12,7 @@
                 "active<tab"
             ],
             "js": [
+                "./lib/Tone.js",
                 "./content/metadata-doi.js",
                 "./content/detect-doi.js",
                 "./content/detect-figure.js"
