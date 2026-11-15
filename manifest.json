@@ -3,19 +3,19 @@
     "version": "0.0.1",
     "name": "Automatic Sonification",
     "short_name": "ASSL",
+    "permissions": [
+        "activeTab"
+    ],
     "content_scripts": [
         {
             "matches": [
                 "<all_urls>"
             ],
-            "permissions": [
-                "active<tab"
-            ],
             "js": [
                 "./lib/Tone.js",
                 "./content/metadata-doi.js",
-                "./content/detect-doi.js",
-                "./content/detect-figure.js"
+                "./content/detect-figure.js",
+                "./content/detect-doi.js"
             ]
         }
     ],

@@ -1,9 +1,49 @@
-function detectFigures() {
-    const figures = document.querySelectorAll("figure");
+async function detectFigures() {
+    console.log("ASSL: detectFigures called");
+    
+    const selectors = [
+        "figure",
+        '[role="figure"]',
+        '[class*="fig" i]',
+        '[id*="fig" i]'
+    ];
+
+    let figures = [];
+    let figureEncoding = null;
+
+    for (const selector of selectors) {
+        figures = document.querySelectorAll(selector);
+
+        if (figures.length > 0) {
+            figureEncoding = selector;
+            break;
+        }
+    }
+
+    console.log("Figure encoding:", figureEncoding);
+    console.log("Figures found:", figures.length);
 
     for (const figure of figures) {
         figure.style.border = "5px solid red";
+
+        const sonifyButton = document.createElement("button");
+        const interactButton = document.createElement("button")
+        sonifyButton.textContent = "Sonify";
+        interactButton.textContent = "Interact";
+        sonifyButton.addEventListener("click", async () => {
+            await Tone.start();
+
+            const synth = new Tone.Synth().toDestination();
+
+            const now = Tone.now();
+
+            synth.triggerAttackRelease("C4", "8n", now);
+            synth.triggerAttackRelease("E4", "8n", now + 0.2);
+            synth.triggerAttackRelease("G4", "8n", now + 0.4);
+        });
+
+        interactButton.addEventListener("click", () => { });
+        figure.appendChild(sonifyButton);
+        figure.appendChild(interactButton);
     }
 }
-
-detectFigures();
