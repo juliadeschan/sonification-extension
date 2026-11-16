@@ -1,5 +1,4 @@
 async function detectFigures() {
-    
     const selectors = [
         "figure",
         '[role="figure"]',
@@ -29,12 +28,21 @@ async function detectFigures() {
             continue;
         }
 
+        if (figure.querySelector(".sonify-button")) {
+            continue;
+        }
+
         figure.style.border = "5px solid red";
 
         const sonifyButton = document.createElement("button");
         const interactButton = document.createElement("button")
+        
+        sonifyButton.className = "sonify-button";
+        interactButton.className = "interact-button";
+
         sonifyButton.textContent = "Sonify";
         interactButton.textContent = "Interact";
+        
         sonifyButton.addEventListener("click", async () => {
             await Tone.start();
 
@@ -47,7 +55,7 @@ async function detectFigures() {
             synth.triggerAttackRelease("G4", "8n", now + 0.4);
         });
 
-        interactButton.addEventListener("click", () => { });
+        interactButton.addEventListener("click", () => { interactiveSonification() });
         figure.appendChild(sonifyButton);
         figure.appendChild(interactButton);
     }
